@@ -1,7 +1,7 @@
 import { Invoice } from './classes/Invoice.js'
 import { Payment } from './classes/Payment.js'
 import { ListTemplate } from './classes/ListTemplate.js';
-import { HasFormatter } from './interfaces/Hasformatter.js'
+import { HasFormatter } from './interfaces/HasFormatter.js'
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
@@ -16,21 +16,13 @@ const list = new ListTemplate(ul);
 
 form.addEventListener('submit', (e:Event) => {
     e.preventDefault();
-
+let values: [string, string, number]
+    values = [toform.value, details.value, amount.valueAsNumber]
     let doc: HasFormatter;
     if(type.value === 'invoice'){
-        doc = new Invoice(
-            toform.value,
-            details.value,
-            amount.valueAsNumber
-        )
+        doc = new Invoice(...values)
     }else{
-        doc = new Payment(            
-            toform.value,
-            details.value,
-            amount.valueAsNumber
-
-        )
+        doc = new Payment(...values)
     }
 
     list.render(doc, type.value, 'end')

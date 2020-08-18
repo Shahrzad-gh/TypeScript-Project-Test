@@ -1,4 +1,4 @@
-import { HasFormatter } from "../interfaces/Hasformatter";
+import { HasFormatter } from "../interfaces/HasFormatter";
 
 export class ListTemplate {
     constructor(
